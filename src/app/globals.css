@@ -5,6 +5,12 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
+    --bg: #0d0c22;
+    --bgSoft: #2d2b42;
+    --text: white;
+    --textSoft: #e5e5e5;
+    --btn: #3673fd;
+
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -87,12 +93,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--bg);
 }
 
 a {
@@ -105,3 +106,57 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+   width: 1536px;
+   margin: auto;
+   padding-left: 50px;
+   padding-right: 50px;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+ }
+ 
+ @media (max-width: 1536px) {
+   .container {
+     width: 1366px;
+   }
+ }
+ 
+ @media (max-width: 1366px) {
+   .container {
+     width: 1280px;
+   }
+ }
+ 
+ @media (max-width: 1280px) {
+   .container {
+     width: 1024px;
+     padding-left: 20px;
+     padding-right: 20px;
+   }
+ }
+ 
+ @media (max-width: 1024px) {
+   .container {
+     width: 768px;
+   }
+ }
+ 
+ @media (max-width: 768px) {
+   .container {
+     width: 640px;
+   }
+ }
+ 
+ @media (max-width: 640px) {
+   .container {
+     width: 475px;
+   }
+ }
+ @media (max-width: 475px) {
+   .container {
+     width: 380px;
+   }
+ }
