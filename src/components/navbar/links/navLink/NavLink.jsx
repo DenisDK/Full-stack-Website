@@ -5,17 +5,17 @@ import styles from "./navLink.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const NavLink = ({ link }) => {
+export const NavLink = ({ item }) => {
   const pathName = usePathname();
 
   return (
     <Link
-      href={link.path}
+      href={item.path}
       className={`${styles.container} ${
-        pathName === link.path && styles.active
+        pathName === item.path && styles.active
       }`}
     >
-      {link.title}
+      {item.title}
     </Link>
   );
 };

@@ -9,6 +9,13 @@
    padding: 10px;
    cursor: pointer;
    font-weight: bold;
+   color: black;
+   background: white;
+   transition: .3s;
+ }
+
+ .logout:hover {
+   background: #cfcfcf;
  }
  
  .menuButton,
