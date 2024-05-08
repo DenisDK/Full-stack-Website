@@ -1,8 +1,23 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "./singlePost.module.css";
 import Image from "next/image";
+import PostUser from "@/components/postUser/PostUser";
 
-export default function SinglePostPage() {
+const getData = async (slug) => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+
+  if (!res) {
+    throw new Error("Something went wrong");
+  }
+
+  return res.json();
+};
+
+export default async function SinglePostPage({ params }) {
+  const { slug } = params;
+
+  const post = await getData(slug);
+
   return (
     <div>
       <div className={styles.container}>
@@ -17,7 +32,7 @@ export default function SinglePostPage() {
           />
         </div>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>Title</h1>
+          <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.detail}>
             <Image
               src="/noavatar.png"
@@ -28,21 +43,15 @@ export default function SinglePostPage() {
               priority={true} // {false} | {true}
               className={styles.avatar}
             />
-            <div className={styles.detailText}>
-              <span className={styles.detailTitle}>Published</span>
-              <span className={styles.detailValue}>User Name</span>
-            </div>
+            <Suspense fullback={<div className="">Loading...</div>}>
+              <PostUser userId={post.userId} />
+            </Suspense>
             <div className={styles.detailText}>
               <span className={styles.detailTitle}>Published</span>
               <span className={styles.detailValue}>Data</span>
             </div>
           </div>
-          <div className={styles.content}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et a,
-            facere assumenda corrupti aliquid nam similique adipisci eaque
-            tempore amet nisi est possimus aliquam expedita dicta. Repudiandae
-            natus minus eos?
-          </div>
+          <div className={styles.content}>{post.body}</div>
         </div>
       </div>
     </div>
