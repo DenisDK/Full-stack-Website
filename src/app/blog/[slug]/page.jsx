@@ -23,28 +23,21 @@ export default async function SinglePostPage({ params }) {
   return (
     <div>
       <div className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/20501721/pexels-photo-20501721.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="post img"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true} // {false} | {true}
-            className={styles.img}
-          />
-        </div>
-        <div className={styles.textContainer}>
-          <h1 className={styles.title}>{post?.title}</h1>
-          <div className={styles.detail}>
+        {post.img && (
+          <div className={styles.imgContainer}>
             <Image
-              src="/noavatar.png"
-              alt="User logo"
-              width={50}
-              height={50}
+              src={post.img}
+              alt="post img"
+              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={true} // {false} | {true}
-              className={styles.avatar}
+              className={styles.img}
             />
+          </div>
+        )}
+        <div className={styles.textContainer}>
+          <h1 className={styles.title}>{post.title}</h1>
+          <div className={styles.detail}>
             {post && (
               <Suspense fullback={<div className="">Loading...</div>}>
                 <PostUser userId={post.userId} />
@@ -52,10 +45,12 @@ export default async function SinglePostPage({ params }) {
             )}
             <div className={styles.detailText}>
               <span className={styles.detailTitle}>Published</span>
-              <span className={styles.detailValue}>Data</span>
+              <span className={styles.detailValue}>
+                {post.createdAt.toString().slice(4, 16)}
+              </span>
             </div>
           </div>
-          <div className={styles.content}>{post?.body}</div>
+          <div className={styles.content}>{post.desc}</div>
         </div>
       </div>
     </div>
