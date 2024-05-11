@@ -19,7 +19,9 @@ const PostCard = ({ post }) => {
             />
           </div>
         )}
-        <span className={styles.date}>date</span>
+        <span className={styles.date}>
+          {post.createdAt?.toString().slice(4, 16)}
+        </span>
       </div>
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
